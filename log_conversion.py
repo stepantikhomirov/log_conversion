@@ -2075,6 +2075,21 @@ def delete_function(log_path, table):
     return table
 
 
+def delete_files_rawdata(folder_path, log_path):
+    """Delete unnecessary event files from the rawdata
+    Parameters
+    ----------
+    folder_path: string
+    Path to the folder which contains the unnecessary files (rawdata/sub/ses/func)
+    log_path : string
+    Log file path.
+    """
+    for root, _, files in os.walk(folder_path):
+        for file in files:
+            file_path = os.path.join(folder_path, file)
+            if file_path == log_path:
+                os.remove(file_path)
+
 html_content = """
 <!DOCTYPE html>
 <html>
