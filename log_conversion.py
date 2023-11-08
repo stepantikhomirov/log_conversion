@@ -2052,7 +2052,27 @@ def generate_section_html(subject, session, task, bids_df_final, log_path):
         html_file.write(html_content)
 
 
+def delete_function(log_path, table):
+    '''
+    Removes unneccesary log file path from the table 
 
+    Parameters
+    ----------
+    log_path : string 
+        Log file path.
+    table : pandas.core.frame.DataFrame
+        Table contaaining all paths to physio and event files.
+
+    Returns
+    -------
+    table : pandas.core.frame.DataFrame
+        Table contaaining all paths to physio and event files.
+
+    '''
+    for paths in table["event"]:
+        if log_path in paths:
+           paths.remove(log_path)
+    return table
 
 
 html_content = """
